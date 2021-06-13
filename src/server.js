@@ -19,6 +19,14 @@ const createServer = () => {
 }
 
 createServer();
+
 app.use(cors());
 app.use(jsonServer.bodyparser);
-app.use("")
+app.use("/api", (req, res, next) => router(req,res, next));
+
+chokidar.watch(fileName).on("change", () => {
+    console.log("Reloading web service data...")
+    createServer();
+    console.log("Reloading web service data complete.");
+});
+app.listen(port, () => console.log(`Web service running on port ${port}`));
