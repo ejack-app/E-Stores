@@ -3,8 +3,10 @@ const ShopReducer = (storeData, action) => {
     switch(action.type) {
         case ActionTypes.DATA_LOAD:
             return {
-                ....storeData,
-                []
-            }
+                ...storeData,
+                [action.payload.dataType]: action.payload.data
+            };
+            default:
+                return storeData || {}
     }
 }
